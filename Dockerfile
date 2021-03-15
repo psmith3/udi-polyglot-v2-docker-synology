@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM ubuntu:bionic
 
 EXPOSE 3000
 # Rachio Websocket

@@ -7,7 +7,7 @@ EXPOSE 3001
 RUN mkdir -p /opt/udi-polyglotv2/
 WORKDIR /opt/udi-polyglotv2/
 
-RUN apt-get update && apt-get install -y apt-utils lsb-release dpkg wget tcpdump net-tools openssl build-essential cmake software-properties-common libssl-dev python python-requests python-dev python-pip python3-dev python3-pip python3-setuptools
+RUN apt-get update && apt-get install -y apt-utils lsb-release dpkg wget git tcpdump net-tools openssl build-essential cmake software-properties-common libssl-dev python python-requests python-dev python-pip python3-dev python3-pip python3-setuptools
 
 RUN apt-get install -y nodejs npm
 

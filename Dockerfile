@@ -18,4 +18,10 @@ COPY run.sh /opt/
 RUN chmod +x /opt/run.sh
 RUN chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64
 
+ENV PYTHON=/usr/bin/python
+ENV PYTHON3=/usr/bin/python3
+ENV NODE_ENV=development
+
+VOLUME Docker/polyglot-v2/dot-polyglot:/root/.polyglot/root/.polyglot
+
 CMD /opt/run.sh

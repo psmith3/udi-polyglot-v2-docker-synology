@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic
 
 EXPOSE 3000
 # Rachio Websocket
@@ -7,17 +7,9 @@ EXPOSE 3001
 RUN mkdir -p /opt/udi-polyglotv2/
 WORKDIR /opt/udi-polyglotv2/
 
-ENV NODE_VERSION=8.10.0
-RUN apt-get update && \
-    apt-get install wget curl ca-certificates rsync -y
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" &&  nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-RUN cp /root/.nvm/versions/node/v${NODE_VERSION}/bin/node /usr/bin/
-RUN cp /root/.nvm/versions/node/v${NODE_VERSION}/bin/npm /usr/bin/
-RUN /root/.nvm/versions/node/v${NODE_VERSION}/bin/npm install  leasot@latest -g
+RUN apt-get update && apt-get install -y apt-utils lsb-release dpkg wget tcpdump net-tools openssl build-essential cmake software-properties-common libssl-dev python python-requests python-dev python-pip python3-dev python3-pip python3-setuptools
+
+RUN apt-get install -y nodejs npm
 
 RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz
 RUN tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz

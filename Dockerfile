@@ -16,7 +16,7 @@ RUN apt-get update -y \
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
   && pip3 --no-cache-dir install --upgrade pip \
-  && curl -sL https://deb.nodesource.com/setup_10.x | -E bash - \
+  && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get install -y nodejs npm \
   && rm -rf /var/lib/apt/lists/*
 

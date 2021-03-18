@@ -11,7 +11,9 @@ RUN set -eux; \
 		curl \
 		netbase \
 		wget \
-# https://bugs.debian.org/929417
+		git \
+		python3-pip python3-dev \
+		pip3 --no-cache-dir install --upgrade pip \
 		tzdata \
 	; \
 	rm -rf /var/lib/apt/lists/*
@@ -29,26 +31,12 @@ RUN set -ex; \
 RUN mkdir -p /opt/udi-polyglotv2/
 WORKDIR /opt/udi-polyglotv2/
 
-
-#  && apt-get install -y apt-utils \
-# && apt-get install -y wget \
-# && apt-get install -y git \
-# && apt-get install -y python3-pip python3-dev \
-# && cd /usr/local/bin \
-# && ln -s /usr/bin/python3 python \
-#  && pip3 --no-cache-dir install --upgrade pip \
-#  && rm -rf /var/lib/apt/lists/*
-
 RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz
 RUN tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz
 
 COPY run.sh /opt/
 RUN chmod +x /opt/run.sh
 RUN chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64
-
-ENV PYTHON=/usr/bin/python
-ENV PYTHON3=/usr/bin/python3
-ENV NODE_ENV=development
 
 VOLUME /root/.polyglot
 

@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM node:10-buster
 
 EXPOSE 3000
 # Rachio Websocket
@@ -17,9 +17,6 @@ RUN apt-get update -y \
   && ln -s /usr/bin/python3 python \
   && pip3 --no-cache-dir install --upgrade pip \
   && rm -rf /var/lib/apt/lists/*
-  
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-RUN apt-get install -y nodejs
 
 RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz
 RUN tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz

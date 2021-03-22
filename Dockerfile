@@ -1,8 +1,11 @@
-FROM nikolaik/python-nodejs:python3.6-nodejs10-stretch
+FROM alpine
 
 EXPOSE 3000
 # Rachio Websocket
 EXPOSE 3001
+
+RUN apk add --update python
+RUN apk add --update nodejs
 
 RUN mkdir -p /opt/udi-polyglotv2/
 WORKDIR /opt/udi-polyglotv2/

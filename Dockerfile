@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs
+FROM nikolaik/python-nodejs:python3.6-nodejs10-stretch
 
 EXPOSE 3000
 # Rachio Websocket

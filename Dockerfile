@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:10-alpine
 
 EXPOSE 3000
 # Rachio Websocket
@@ -14,20 +14,16 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     pip3 install --upgrade pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     rm -r /root/.cache && \
-    wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz && \
+    apk del .build-deps
+    
+RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz && \
     tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz && \
-    chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64 && \
-    apk del .build-deps  
-
-ENV PYTHON=/usr/bin/python
-ENV PYTHON3=/usr/bin/python3
-ENV NODE_ENV=production
-ENV USEDOCKER=true
+    chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64 &&
 
 COPY run.sh /opt/
 RUN chmod +x /opt/run.sh
 
 VOLUME /root/.polyglot
-VOLUME /usr/lib/python3.8/site-packages
+VOLUME /usr/lib/python3.6/site-packages
 
 CMD /opt/run.sh

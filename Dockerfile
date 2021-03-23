@@ -23,7 +23,7 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
 
 ENV PYTHON=/usr/bin/python
 ENV PYTHON3=/usr/bin/python3
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV USEDOCKER=true
 
 COPY run.sh /opt/

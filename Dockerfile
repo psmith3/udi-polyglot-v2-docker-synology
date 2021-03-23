@@ -30,5 +30,6 @@ COPY run.sh /opt/
 RUN chmod +x /opt/run.sh
 
 VOLUME /root/.polyglot
+VOLUME /usr/lib/python3.8/site-packages
 
 CMD /opt/run.sh

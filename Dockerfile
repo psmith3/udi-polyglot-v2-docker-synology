@@ -21,6 +21,14 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64 && \
     apk del .build-deps  
 
+ENV PYTHON=/usr/bin/python
+ENV PYTHON3=/usr/bin/python3
+ENV NODE_ENV=development
+ENV USEDOCKER=true
+
+COPY run.sh /opt/
+RUN chmod +x /opt/run.sh
+
 VOLUME /root/.polyglot
 
-CMD /opt/udi-polyglotv2/polyglot-v2-linux-x64
+CMD /opt/run.sh

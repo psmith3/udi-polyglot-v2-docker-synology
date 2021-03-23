@@ -18,7 +18,7 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     
 RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz && \
     tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz && \
-    chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64 &&
+    chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64
 
 COPY run.sh /opt/
 RUN chmod +x /opt/run.sh

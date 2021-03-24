@@ -1,11 +1,8 @@
 FROM node:10-alpine
 
 EXPOSE 3000
-# Rachio Websocket
 EXPOSE 3001
-
-RUN mkdir -p /opt/udi-polyglotv2/
-WORKDIR /opt/udi-polyglotv2/
+WORKDIR /opt/polyglot-v2/
 
 RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     apk add --no-cache python3 python3-dev py3-pip bash git ca-certificates wget tzdata openssl && \
@@ -14,16 +11,14 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     pip3 install --upgrade pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     rm -r /root/.cache && \
+    cd /opt && \
+    git clone --depth=1 --single-branch --branch master https://github.com/UniversalDevicesInc/polyglot-v2.git && \
+    cd /opt/polyglot-v2 && \
+    npm install && \
     apk del .build-deps
-    
-RUN wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-x64.tar.gz && \
-    tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz && \
-    chmod +x /opt/udi-polyglotv2/polyglot-v2-linux-x64
-
-COPY run.sh /opt/
-RUN chmod +x /opt/run.sh
 
 VOLUME /root/.polyglot
 VOLUME /usr/lib/python3.6/site-packages
 
-CMD /opt/run.sh
+# Run Polyglot
+CMD npm star

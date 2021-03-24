@@ -21,4 +21,4 @@ VOLUME /root/.polyglot
 VOLUME /usr/lib/python3.6/site-packages
 
 # Run Polyglot
-CMD npm star
+CMD npm start

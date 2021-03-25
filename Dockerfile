@@ -14,7 +14,6 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     cd /opt && \
     git clone --depth=1 --single-branch --branch master https://github.com/UniversalDevicesInc/polyglot-v2.git && \
     cd /opt/polyglot-v2 && \
-    npm audit fix && \
     npm install && \
     apk del .build-deps
 

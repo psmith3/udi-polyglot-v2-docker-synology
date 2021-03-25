@@ -5,7 +5,7 @@ EXPOSE 3001
 WORKDIR /opt/polyglot-v2/
 
 RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
-    apk add --no-cache python3 python3-dev py3-pip bash git ca-certificates wget tzdata openssl gcc musl-dev && \
+    apk add --no-cache python3 gcc python3-dev musl-dev py3-pip bash git ca-certificates wget tzdata openssl && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
@@ -18,7 +18,6 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     apk del .build-deps
 
 VOLUME /root/.polyglot
-VOLUME /usr/lib/python3.6/site-packages
 
 ENV NODE_ENV=development
 

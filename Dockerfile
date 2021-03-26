@@ -18,6 +18,7 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     apk del .build-deps
 
 VOLUME /root/.polyglot
+VOLUME /usr/lib/python3.8/site-packages
 
 ENV NODE_ENV=development
 
